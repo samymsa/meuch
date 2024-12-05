@@ -1,15 +1,6 @@
 import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
 import { Octokit } from "octokit";
-
-type Contributor = {
-  author: {
-    id: number;
-    login: string;
-    type: string;
-    avatar_url: string;
-  };
-  total: number;
-};
+import { Contributor } from "./contributor";
 
 export async function Contributors() {
   const octokit = new Octokit({
