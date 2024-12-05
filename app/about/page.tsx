@@ -51,8 +51,8 @@ async function getContributorsData() {
       },
     },
   );
-
-  const contributors = response.data.sort(
+  const githubData = response.data;
+  const contributors = githubData.sort(
     (a: Contributor, b: Contributor) => b.total - a.total,
   );
 
