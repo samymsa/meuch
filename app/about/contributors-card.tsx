@@ -1,15 +1,13 @@
 "use client";
 
-import { TrendingUp } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
+import { Label, Pie, PieChart } from "recharts";
 
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -21,29 +19,38 @@ import {
 } from "@/components/ui/chart";
 import { Contributor } from "./contributor";
 
-const chartData = [
-  { month: "January", commits: 186 },
-  { month: "February", commits: 305 },
-  { month: "March", commits: 237 },
-  { month: "April", commits: 73 },
-  { month: "May", commits: 209 },
-  { month: "June", commits: 214 },
-];
-
-const chartConfig = {
-  commits: {
-    label: "Commits",
-    color: "hsl(var(--chart-1))",
-  },
-} satisfies ChartConfig;
-
-export async function ContributorsCard({
+export function ContributorsCard({
   contributor,
   rank,
 }: {
   contributor: Contributor;
   rank: number;
 }) {
+  // Calcul des données pour le PieChart
+  const commits = contributor.weeks.reduce((acc, week) => acc + week.c, 0);
+  const additions = contributor.weeks.reduce((acc, week) => acc + week.a, 0);
+  const deletions = contributor.weeks.reduce((acc, week) => acc + week.d, 0);
+
+  const pieData = [
+    { name: "Additions", value: additions, fill: "hsl(var(--chart-2))" },
+    { name: "Deletions", value: deletions, fill: "hsl(var(--chart-1))" },
+  ];
+
+  const chartConfig = {
+    commits: {
+      label: "Commits",
+      color: "hsl(var(--chart-1))",
+    },
+    additions: {
+      label: "Additions",
+      color: "hsl(var(--chart-2))",
+    },
+    deletions: {
+      label: "Deletions",
+      color: "hsl(var(--chart-3))",
+    },
+  } satisfies ChartConfig;
+
   return (
     <Card>
       <CardHeader>
@@ -52,7 +59,7 @@ export async function ContributorsCard({
           width={100}
           src={contributor.author.avatar_url}
           alt={contributor.author.login}
-          className="object-cover object-top rounded-full h-14 w-14 border-2 group-hover:scale-105 group-hover:z-30 border-white  relative transition duration-500"
+          className="object-cover object-top rounded-full h-14 w-14 border-2 group-hover:scale-105 group-hover:z-30 border-white relative transition duration-500"
         />
         <CardTitle>
           <Link
@@ -64,51 +71,56 @@ export async function ContributorsCard({
         </CardTitle>
         <CardDescription>#{rank} contributor</CardDescription>
       </CardHeader>
-      <CardContent>
-        <ChartContainer config={chartConfig}>
-          <AreaChart
-            accessibilityLayer
-            data={chartData}
-            margin={{
-              left: 12,
-              right: 12,
-            }}
-          >
-            <CartesianGrid vertical={false} />
-            <XAxis
-              dataKey="month"
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-              tickFormatter={(value) => value.slice(0, 3)}
-            />
+      <CardContent className="flex-1 pb-0">
+        <ChartContainer
+          config={chartConfig}
+          className="mx-auto aspect-square max-h-[250px]"
+        >
+          <PieChart width={200} height={200}>
             <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent indicator="dot" />}
+              content={<ChartTooltipContent hideLabel />}
             />
-            <Area
-              dataKey="mobile"
-              type="natural"
-              fill="var(--color-mobile)"
-              fillOpacity={0.4}
-              stroke="var(--color-mobile)"
-              stackId="a"
-            />
-          </AreaChart>
+            <Pie
+              data={pieData}
+              dataKey="value"
+              nameKey="name"
+              innerRadius={60}
+              strokeWidth={5}
+            >
+              <Label
+                content={({ viewBox }) => {
+                  if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+                    return (
+                      <text
+                        x={viewBox.cx}
+                        y={viewBox.cy}
+                        textAnchor="middle"
+                        dominantBaseline="middle"
+                      >
+                        <tspan
+                          x={viewBox.cx}
+                          y={viewBox.cy}
+                          className="fill-foreground text-3xl font-bold"
+                        >
+                          {commits}
+                        </tspan>
+                        <tspan
+                          x={viewBox.cx}
+                          y={(viewBox.cy || 0) + 24}
+                          className="fill-muted-foreground"
+                        >
+                          Commits
+                        </tspan>
+                      </text>
+                    );
+                  }
+                }}
+              />
+            </Pie>
+          </PieChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter>
-        <div className="flex w-full items-start gap-2 text-sm">
-          <div className="grid gap-2">
-            <div className="flex items-center gap-2 font-medium leading-none">
-              Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-            </div>
-            <div className="flex items-center gap-2 leading-none text-muted-foreground">
-              January - June 2024
-            </div>
-          </div>
-        </div>
-      </CardFooter>
     </Card>
   );
 }

@@ -17,6 +17,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
+import { Contributor } from "./contributor";
 
 const chartConfig = {
   commits: {
@@ -25,7 +26,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function CommitChart({ data }) {
+export function CommitChart({ contributors }: { contributors: Contributor[] }) {
   return (
     <Card className="w-full">
       <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
@@ -39,7 +40,7 @@ export function CommitChart({ data }) {
           config={chartConfig}
           className="aspect-auto h-[250px] w-full"
         >
-          <AreaChart data={data}>
+          <AreaChart data={contributors}>
             <defs>
               <linearGradient id="fillcommits" x1="0" y1="0" x2="0" y2="1">
                 <stop
