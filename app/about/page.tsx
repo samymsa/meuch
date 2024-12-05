@@ -18,7 +18,8 @@ async function getCommitsData() {
       },
     },
   );
-  const githubData = response.data;
+
+  const githubData = response.data || [];
 
   const filteredData = githubData.filter((item) => item[0] > 2);
 
@@ -56,10 +57,37 @@ async function getContributorsData() {
 
 export default async function About() {
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center">
-      <CommitChart data={await getCommitsData()} />
-      <Contributors contributors={await getContributorsData()} />
-      <ContributorsList contributors={await getContributorsData()} />
-    </main>
+    <div className="min-h-screen bg-gray-100 text-gray-800">
+      <main className="container mx-auto mt-8 p-4">
+        {/* Graphique principal */}
+        <section className="mb-6">
+          <h2 className="text-xl font-semibold text-center mb-4">
+            Historique des commits à la Nuit De l&apos;Info 2024
+          </h2>
+          <div className="bg-white p-6 rounded-lg shadow-md">
+            <CommitChart contributors={await getCommitsData()} />
+          </div>
+        </section>
+
+        {/* Bloc séparateur "Top Contributors" */}
+        <section className="mb-4">
+          <h2 className="text-xl font-semibold text-center mb-2">
+            Classement des contributeurs
+          </h2>
+          <Contributors contributors={await getContributorsData()} />
+        </section>
+
+        {/* Blocs Contributor Details */}
+        <section className="grid gap-6">
+          <div className="bg-white p-6 rounded-lg shadow-md">
+            <ContributorsList />
+          </div>
+        </section>
+      </main>
+
+      <footer className="bg-gray-800 text-gray-400 p-4 text-center mt-8">
+        <p>© 2024 Meuch Project. Built with 💙 by SamyMSA.</p>
+      </footer>
+    </div>
   );
 }

@@ -6,4 +6,9 @@ export type Contributor = {
     avatar_url: string;
   };
   total: number;
+  weeks: Array<{
+    a: number;
+    d: number;
+    c: number;
+  }>;
 };
