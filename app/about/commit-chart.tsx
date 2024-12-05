@@ -1,6 +1,6 @@
 "use client";
 
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
+import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 
 import {
   Card,
@@ -72,10 +72,19 @@ export function CommitChart({ data }) {
                     month: "short",
                     day: "numeric",
                     hour: "numeric",
-                  },
+                  }
                 );
                 return formattedDate;
               }}
+            />
+            <YAxis
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              domain={[0, (dataMax: number) => Math.ceil(dataMax + 1)]}
+              tickFormatter={(value) => Math.floor(value).toString()}
+              width={40}
+              allowDecimals={false}
             />
             <ChartTooltip
               cursor={false}
@@ -91,7 +100,7 @@ export function CommitChart({ data }) {
                         month: "short",
                         day: "numeric",
                         hour: "numeric",
-                      },
+                      }
                     );
                     return formattedDate;
                   }}
