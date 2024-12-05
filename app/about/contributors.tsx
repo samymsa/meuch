@@ -8,6 +8,7 @@ type Contributor = {
     type: string;
     avatar_url: string;
   };
+  total: number;
 };
 
 export async function Contributors() {
@@ -23,18 +24,23 @@ export async function Contributors() {
       headers: {
         "X-GitHub-Api-Version": "2022-11-28",
       },
-    }
+    },
   );
 
-  const contributors = response.data.map((contributor: Contributor) => {
-    console.log(contributor.author);
-    return {
-      id: contributor.author.id,
-      name: contributor.author.login,
-      designation: contributor.author.type,
-      image: contributor.author.avatar_url,
-    };
-  });
+  const contributors = response.data
+    .sort((a: Contributor, b: Contributor) => b.total - a.total)
+    .map((contributor: Contributor, index: number) => {
+      return {
+        id: contributor.author.id,
+        name: contributor.author.login,
+        designation: `#${index + 1}`,
+        image: contributor.author.avatar_url,
+      };
+    });
 
-  return <AnimatedTooltip items={contributors} />;
+  return (
+    <div className="flex flex-row items-center justify-center mb-10 w-full">
+      <AnimatedTooltip items={contributors} />
+    </div>
+  );
 }
