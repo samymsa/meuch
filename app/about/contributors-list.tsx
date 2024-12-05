@@ -1,3 +1,4 @@
+import { OctokitResponse } from "@octokit/types";
 import { Octokit } from "octokit";
 import { Contributor } from "./contributor";
 import { ContributorsCard } from "./contributors-card";
@@ -7,7 +8,7 @@ export async function ContributorsList() {
     auth: process.env.GITHUB_ACCESS_TOKEN,
   });
 
-  const response = await octokit.request(
+  const response: OctokitResponse<Contributor[]> = await octokit.request(
     "GET /repos/{owner}/{repo}/stats/contributors",
     {
       owner: "samymsa",
@@ -18,7 +19,7 @@ export async function ContributorsList() {
     },
   );
 
-  const contributors = response.data.sort(
+  const contributors = response?.data?.sort(
     (a: Contributor, b: Contributor) => b.total - a.total,
   );
 
