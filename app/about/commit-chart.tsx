@@ -19,87 +19,8 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { Octokit } from "octokit";
-const chartData = [
-  { date: "05/12/2024 00:00:00", commits: 9 },
-  { date: "05/12/2024 01:00:00", commits: 3 },
-  { date: "05/12/2024 02:00:00", commits: 1 },
-  { date: "05/12/2024 03:00:00", commits: 7 },
-  { date: "05/12/2024 04:00:00", commits: 19 },
-  { date: "05/12/2024 05:00:00", commits: 3 },
-  { date: "05/12/2024 06:00:00", commits: 9 },
-  { date: "05/12/2024 07:00:00", commits: 5 },
-  { date: "05/12/2024 08:00:00", commits: 7 },
-  { date: "05/12/2024 09:00:00", commits: 1 },
-  { date: "05/12/2024 10:00:00", commits: 3 },
-  { date: "05/12/2024 11:00:00", commits: 5 },
-  { date: "05/12/2024 12:00:00", commits: 7 },
-  { date: "05/12/2024 13:00:00", commits: 4 },
-  { date: "05/12/2024 14:00:00", commits: 8 },
-  { date: "05/12/2024 15:00:00", commits: 2 },
-  { date: "05/12/2024 16:00:00", commits: 11 },
-  { date: "05/12/2024 17:00:00", commits: 6 },
-  { date: "05/12/2024 18:00:00", commits: 3 },
-  { date: "05/12/2024 19:00:00", commits: 9 },
-  { date: "05/12/2024 20:00:00", commits: 5 },
-  { date: "05/12/2024 21:00:00", commits: 2 },
-  { date: "05/12/2024 22:00:00", commits: 7 },
-  { date: "05/12/2024 23:00:00", commits: 1 },
-];
-
-/* sample data : sample github data
-
-First value is the day of the week (0-6), the second value is the hour of the day (0-23), and the third value is the number of commits:
-*/
-const sampleData = [
-  [0, 0, 0],
-  [0, 1, 3],
-  [0, 2, 1],
-];
-
-function createDateFromDayAndHour(dayNumber, hour) {
-  if (dayNumber < 0 || dayNumber > 6)
-    throw new Error("Invalid day number. Must be between 0 and 6.");
-  if (hour < 0 || hour > 23)
-    throw new Error("Invalid hour. Must be between 0 and 23.");
-
-  // Base date: Start of the current week (Sunday)
-  const now = new Date();
-  const startOfWeek = new Date(now);
-  startOfWeek.setDate(now.getDate() - now.getDay()); // Adjust to the previous Sunday
-  startOfWeek.setHours(0, 0, 0, 0); // Reset time to 00:00:00.000
-
-  // Target date
-  const targetDate = new Date(startOfWeek);
-  targetDate.setDate(startOfWeek.getDate() + dayNumber); // Add day offset
-  targetDate.setHours(hour); // Set the desired hour
-
-  return targetDate;
-}
-
-const d = sampleData.map((item) => {
-  const date = createDateFromDayAndHour(item[0], item[1]);
-  return {
-    date: date.toISOString(),
-    commits: item[2],
-  };
-});
-
-const sample2ChartData = sampleData.map((item) => {
-  const date = new Date("2024-12-05");
-  date.setDate(date.getDate());
-  date.setHours(item[1]);
-  return {
-    date: date.toLocaleString("fr"),
-    commits: item[2],
-  };
-});
-
-console.log(sample2ChartData);
 
 const chartConfig = {
-  visitors: {
-    label: "Visitors",
-  },
   commits: {
     label: "commits",
     color: "hsl(var(--chart-1))",
