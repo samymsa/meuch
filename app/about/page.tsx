@@ -35,12 +35,31 @@ async function getCommitsData() {
   return chartData;
 }
 
+async function getContributorsData() {
+  const octokit = new Octokit({
+    auth: process.env.GITHUB_ACCESS_TOKEN,
+  });
+
+  const response = await octokit.request(
+    "GET /repos/{owner}/{repo}/stats/contributors",
+    {
+      owner: "samymsa",
+      repo: "meuch",
+      headers: {
+        "X-GitHub-Api-Version": "2022-11-28",
+      },
+    },
+  );
+
+  return response.data.sort((a, b) => b.total - a.total);
+}
+
 export default async function About() {
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center">
       <CommitChart data={await getCommitsData()} />
-      <Contributors />
-      <ContributorsList />
+      <Contributors contributors={await getContributorsData()} />
+      <ContributorsList contributors={await getContributorsData()} />
     </main>
   );
 }

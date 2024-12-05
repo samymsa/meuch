@@ -26,7 +26,6 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export function CommitChart({ data }) {
-  console.log(data);
   return (
     <Card className="w-full">
       <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
@@ -72,7 +71,7 @@ export function CommitChart({ data }) {
                     month: "short",
                     day: "numeric",
                     hour: "numeric",
-                  }
+                  },
                 );
                 return formattedDate;
               }}
@@ -100,7 +99,7 @@ export function CommitChart({ data }) {
                         month: "short",
                         day: "numeric",
                         hour: "numeric",
-                      }
+                      },
                     );
                     return formattedDate;
                   }}

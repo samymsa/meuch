@@ -12,4 +12,4 @@ Meuch team project for the NDI 2024 event. Hosted by Vercel at [meuch.vercel.app
 
 ## Usage
 
-Run the development server with `npm run dev`.
+- Run the development server with `npm run dev`.
