@@ -1,5 +1,6 @@
 import { Octokit } from "octokit";
 import { CommitChart } from "./commit-chart";
+import { Contributor } from "./contributor";
 import { Contributors } from "./contributors";
 import { ContributorsList } from "./contributors-list";
 
@@ -35,12 +36,35 @@ async function getCommitsData() {
   return chartData;
 }
 
+async function getContributorsData() {
+  const octokit = new Octokit({
+    auth: process.env.GITHUB_ACCESS_TOKEN,
+  });
+
+  const response = await octokit.request(
+    "GET /repos/{owner}/{repo}/stats/contributors",
+    {
+      owner: "samymsa",
+      repo: "meuch",
+      headers: {
+        "X-GitHub-Api-Version": "2022-11-28",
+      },
+    },
+  );
+
+  const contributors = response.data.sort(
+    (a: Contributor, b: Contributor) => b.total - a.total,
+  );
+
+  return contributors;
+}
+
 export default async function About() {
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center">
       <CommitChart data={await getCommitsData()} />
-      <Contributors />
-      <ContributorsList />
+      <Contributors contributors={await getContributorsData()} />
+      <ContributorsList contributors={await getContributorsData()} />
     </main>
   );
 }
