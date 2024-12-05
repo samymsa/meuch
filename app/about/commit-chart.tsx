@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 
 import {
@@ -18,7 +17,6 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { Octokit } from "octokit";
 
 const chartConfig = {
   commits: {
@@ -27,59 +25,8 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function CommitChart() {
-  const [timeRange, setTimeRange] = React.useState("90d");
-  const [chartData, setChartData] = React.useState([]);
-
-  React.useEffect(() => {
-    async function fetchData() {
-      const octokit = new Octokit({
-        auth: process.env.GITHUB_ACCESS_TOKEN,
-      });
-
-      const response = await octokit.request(
-        "GET /repos/{owner}/{repo}/stats/punch_card",
-        {
-          owner: "samymsa",
-          repo: "meuch",
-          headers: {
-            "X-GitHub-Api-Version": "2022-11-28",
-          },
-        }
-      );
-      const githubData = response.data;
-      console.log("githubData", githubData);
-      // parse to chart data
-      const chartData = githubData.map((item) => {
-        const date = new Date("2024-12-05");
-        date.setDate(date.getDate() + item[0]);
-        date.setHours(item[1]);
-        return {
-          date: date.toLocaleString("fr"),
-          commits: item[2],
-        };
-      });
-      console.log("chartData", chartData);
-      setChartData(chartData);
-    }
-
-    fetchData();
-  }, []);
-
-  const filteredData = chartData.filter((item) => {
-    const date = new Date(item.date);
-    const referenceDate = new Date("2024-06-30");
-    let daysToSubtract = 90;
-    if (timeRange === "30d") {
-      daysToSubtract = 30;
-    } else if (timeRange === "7d") {
-      daysToSubtract = 7;
-    }
-    const startDate = new Date(referenceDate);
-    startDate.setDate(startDate.getDate() - daysToSubtract);
-    return date >= startDate;
-  });
-
+export function CommitChart({ data }) {
+  console.log(data);
   return (
     <Card className="w-full">
       <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
@@ -93,7 +40,7 @@ export function CommitChart() {
           config={chartConfig}
           className="aspect-auto h-[250px] w-full"
         >
-          <AreaChart data={filteredData}>
+          <AreaChart data={data}>
             <defs>
               <linearGradient id="fillcommits" x1="0" y1="0" x2="0" y2="1">
                 <stop
@@ -125,7 +72,7 @@ export function CommitChart() {
                     month: "short",
                     day: "numeric",
                     hour: "numeric",
-                  }
+                  },
                 );
                 return formattedDate;
               }}
@@ -144,7 +91,7 @@ export function CommitChart() {
                         month: "short",
                         day: "numeric",
                         hour: "numeric",
-                      }
+                      },
                     );
                     return formattedDate;
                   }}

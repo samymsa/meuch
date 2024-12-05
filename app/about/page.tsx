@@ -1,11 +1,41 @@
+import { Octokit } from "octokit";
 import { CommitChart } from "./commit-chart";
 import { Contributors } from "./contributors";
 import { ContributorsList } from "./contributors-list";
 
-export default function About() {
+async function getCommitsData() {
+  const octokit = new Octokit({
+    auth: process.env.GITHUB_ACCESS_TOKEN,
+  });
+
+  const response = await octokit.request(
+    "GET /repos/{owner}/{repo}/stats/punch_card",
+    {
+      owner: "samymsa",
+      repo: "meuch",
+      headers: {
+        "X-GitHub-Api-Version": "2022-11-28",
+      },
+    },
+  );
+  const githubData = response.data;
+  const chartData = githubData.map((item) => {
+    const date = new Date("2024-12-02");
+    date.setDate(date.getDate() + item[0]);
+    date.setHours(item[1]);
+    return {
+      date: date.toLocaleString("fr"),
+      commits: item[2],
+    };
+  });
+
+  return chartData;
+}
+
+export default async function About() {
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center">
-      <CommitChart />
+      <CommitChart data={await getCommitsData()} />
       <Contributors />
       <ContributorsList />
     </main>
