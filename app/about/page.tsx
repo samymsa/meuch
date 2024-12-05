@@ -19,8 +19,11 @@ async function getCommitsData() {
     },
   );
   const githubData = response.data;
-  const chartData = githubData.map((item) => {
-    const date = new Date("2024-12-02");
+
+  const filteredData = githubData.filter((item) => item[0] > 2);
+
+  const chartData = filteredData.map((item) => {
+    const date = new Date("2024-12-01");
     date.setDate(date.getDate() + item[0]);
     date.setHours(item[1]);
     return {
