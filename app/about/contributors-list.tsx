@@ -19,7 +19,7 @@ export async function ContributorsList() {
     },
   );
 
-  const contributors = response.data?.sort(
+  const contributors = response?.data?.sort(
     (a: Contributor, b: Contributor) => b.total - a.total,
   );
 
