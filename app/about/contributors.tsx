@@ -1,6 +1,15 @@
 import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
 import { Octokit } from "octokit";
 
+type Contributor = {
+  author: {
+    id: number;
+    login: string;
+    type: string;
+    avatar_url: string;
+  };
+};
+
 export async function Contributors() {
   const octokit = new Octokit({
     auth: process.env.GITHUB_ACCESS_TOKEN,
@@ -14,10 +23,10 @@ export async function Contributors() {
       headers: {
         "X-GitHub-Api-Version": "2022-11-28",
       },
-    },
+    }
   );
 
-  const contributors = response.data.map((contributor) => {
+  const contributors = response.data.map((contributor: Contributor) => {
     console.log(contributor.author);
     return {
       id: contributor.author.id,
