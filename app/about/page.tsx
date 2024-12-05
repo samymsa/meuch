@@ -1,6 +1,5 @@
 import { Octokit } from "octokit";
 import { CommitChart } from "./commit-chart";
-import { Contributor } from "./contributor";
 import { Contributors } from "./contributors";
 import { ContributorsList } from "./contributors-list";
 
@@ -52,11 +51,7 @@ async function getContributorsData() {
     },
   );
 
-  const contributors = response.data.sort(
-    (a: Contributor, b: Contributor) => b.total - a.total,
-  );
-
-  return contributors;
+  return response.data;
 }
 
 export default async function About() {
