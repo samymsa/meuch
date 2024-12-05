@@ -51,7 +51,7 @@ async function getContributorsData() {
     },
   );
 
-  return response.data;
+  return response.data.sort((a, b) => b.total - a.total);
 }
 
 export default async function About() {
