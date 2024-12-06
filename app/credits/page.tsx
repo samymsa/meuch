@@ -66,18 +66,12 @@ export default async function About() {
     <div className="flex min-h-screen flex-col items-center justify-center">
       <main className="container mx-auto mt-8 p-4 space-y-8">
         <h1 className="text-4xl font-bold text-center">Crédits</h1>
+        <Contributors contributors={await getContributorsData()} />
+
 
         {/* Graphique principal */}
         <section className="space-y-2">
             <CommitChart contributors={await getCommitsData()} />
-        </section>
-
-        {/* Bloc séparateur "Top Contributors" */}
-        <section className="space-y-2">
-          <h2 className="text-xl font-semibold text-center">
-            Classement des contributeurs
-          </h2>
-          <Contributors contributors={await getContributorsData()} />
         </section>
 
         {/* Blocs Contributor Details */}

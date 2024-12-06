@@ -16,7 +16,7 @@ export async function Contributors({
   });
 
   return (
-    <span className="flex flex-row items-center justify-center">
+    <span className="flex flex-row items-center justify-center mr-2">
       <AnimatedTooltip items={data} />
     </span>
   );
