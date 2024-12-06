@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { BentoGrid, BentoGridItem } from "./ui/bento-grid";
 
 export function BentoGridDemo({ items }) {
@@ -16,10 +17,12 @@ export function BentoGridDemo({ items }) {
         >
           <div className="flex items-center space-x-4">
             {item.image && (
-              <img
+              <Image
                 src={item.image}
                 alt={item.title}
-                className="w-16 h-16 object-cover rounded-full"
+                width={64}
+                height={64}
+                className="object-cover rounded-full"
               />
             )}
             <div>
@@ -27,6 +30,12 @@ export function BentoGridDemo({ items }) {
               <p className="text-sm text-gray-700">{item.description}</p>
             </div>
           </div>
+          <Image
+            src={item.qrCodeLien}
+            alt={item.title}
+            width={64}
+            height={64}
+          />
         </BentoGridItem>
       ))}
     </BentoGrid>

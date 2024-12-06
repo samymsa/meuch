@@ -13,6 +13,7 @@ export default function Home() {
     title: organe.nom,
     description: organe.courteDescription,
     image: organe.image,
+    qrcode: organe.qrCodeLien,
     bentoGrid: organe.bentoGrid.map((item) => ({
       content: item.contenu,
       percentage: item.pourcentage || 0,
