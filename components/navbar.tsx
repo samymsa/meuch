@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <nav className="w-full bg-background">
+    <nav className="w-full bg-transparent fixed top-0 text-white z-50 px-8">
       <div className="container mx-auto flex justify-between items-center py-4">
         <NavigationMenu>
           <NavigationMenuList className="justify-start">
