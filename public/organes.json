@@ -1,0 +1,129 @@
+{
+  "organes": [
+    {
+      "nom": "Le Poumon",
+      "qrCodeLien": "https://example.com/qr/poumon",
+      "courteDescription": "Les poumons symbolisent le rôle vital des océans dans les échanges gazeux, en produisant l'oxygène et absorbant le dioxyde de carbone.",
+      "partieAssociee": "Photosynthèse et dissolution du CO2",
+      "image": "./organes/corail.png",
+      "bentoGrid": [
+        {
+          "contenu": "Les poumons symbolisent le rôle des océans dans les échanges gazeux, notamment grâce à la photosynthèse réalisée par le phytoplancton. Ce processus génère plus de la moitié de l'oxygène terrestre tout en absorbant des quantités massives de dioxyde de carbone. Cependant, la pollution et l'acidification des eaux perturbent cet équilibre fragile, menaçant la biodiversité et aggravant le réchauffement climatique."
+        },
+        {
+          "pourcentage": 74,
+          "contenu": "des coraux sont gravement impactés par la pollution marine et le changement climatique."
+        },
+        {
+          "contenu": "Le phytoplancton joue un rôle clé dans les échanges gazeux océaniques en produisant une part significative de l'oxygène mondial."
+        },
+        {
+          "contenu": "L'acidification des océans causée par l'absorption de CO2 affecte les écosystèmes marins, limitant leur capacité à produire de l'oxygène."
+        },
+        {
+          "contenu": "En régulant les échanges gazeux, les océans contribuent directement à la stabilisation du climat et au maintien de la biodiversité."
+        }
+      ]
+    },
+    {
+      "nom": "Le Coeur",
+      "qrCodeLien": "https://example.com/qr/coeur",
+      "courteDescription": "Le cœur représente les courants marins et la pompe thermohaline, essentiels pour stabiliser le climat et transporter les nutriments.",
+      "partieAssociee": "Courants marins et pompe thermohaline",
+      "image": "./organes/coeur.png",
+      "bentoGrid": [
+        {
+          "contenu": "Le cœur de l'océan est incarné par les courants marins et la pompe thermohaline. Ces mécanismes transportent chaleur et nutriments à travers le globe, stabilisant le climat et soutenant la biodiversité marine. Avec le réchauffement climatique, ces processus sont perturbés, ralentissant la circulation océanique et menaçant la survie des écosystèmes marins."
+        },
+        {
+          "pourcentage": 68,
+          "contenu": "des courants marins sont perturbés par le réchauffement climatique."
+        },
+        {
+          "contenu": "Les courants marins, tels que le Gulf Stream, redistribuent la chaleur et maintiennent des températures stables à l'échelle mondiale."
+        },
+        {
+          "contenu": "Ce mécanisme dépend de la densité de l'eau, influencée par la température et la salinité, et alimente la circulation globale."
+        },
+        {
+          "contenu": "Un ralentissement des courants peut entraîner des changements climatiques drastiques et des déséquilibres dans les écosystèmes marins."
+        }
+      ]
+    },
+    {
+      "nom": "Le Sexe",
+      "qrCodeLien": "https://example.com/qr/sexe",
+      "courteDescription": "Le sexe, symbolisé par le concombre de mer, représente la régénération et la fertilité des fonds marins grâce à son rôle écologique.",
+      "partieAssociee": "Fertilité et régénération des fonds marins",
+      "image": "./organes/concombre.png",
+      "bentoGrid": [
+        {
+          "contenu": "Le concombre de mer, souvent associé à la fertilité, joue un rôle vital dans le nettoyage et la régénération des fonds marins. En digérant les sédiments, il recycle les nutriments et aide à maintenir l'équilibre écologique. Ces créatures, bien que discrètes, sont essentielles pour la santé des habitats marins, mais elles sont menacées par la surpêche et la dégradation de leur environnement."
+        },
+        {
+          "pourcentage": 60,
+          "contenu": "des concombres de mer sont surexploités dans certaines régions."
+        },
+        {
+          "contenu": "Les concombres de mer assurent la propreté des fonds marins en éliminant les sédiments et en recyclant les déchets organiques."
+        },
+        {
+          "contenu": "La surexploitation de ces espèces affecte gravement leur capacité à régénérer les écosystèmes sous-marins."
+        },
+        {
+          "contenu": "Leurs activités de filtration et de digestion des sédiments contribuent à la stabilité et à la fertilité des écosystèmes marins."
+        }
+      ]
+    },
+    {
+      "nom": "Les Pieds",
+      "qrCodeLien": "https://example.com/qr/pieds",
+      "courteDescription": "Les pieds symbolisent les fonds marins, essentiels pour soutenir la vie océanique et stabiliser les écosystèmes.",
+      "partieAssociee": "Soutien et stabilité des écosystèmes marins",
+      "image": "./organes/pieds.png",
+      "bentoGrid": [
+        {
+          "contenu": "Les fonds marins, symbolisés par les pieds, soutiennent la majeure partie de la vie océanique. Ils abritent une biodiversité exceptionnelle, fournissent des habitats essentiels et jouent un rôle clé dans la régulation des écosystèmes marins. Cependant, ils sont gravement menacés par la pollution, la pêche industrielle et l'exploitation minière."
+        },
+        {
+          "pourcentage": 40,
+          "contenu": "des habitats des fonds marins sont gravement dégradés par l'activité humaine."
+        },
+        {
+          "contenu": "Les fonds marins abritent des espèces vitales qui soutiennent l'équilibre écologique des océans."
+        },
+        {
+          "contenu": "La pêche au chalut détruit les habitats des fonds marins et perturbe les écosystèmes locaux."
+        },
+        {
+          "contenu": "Protéger les fonds marins est essentiel pour maintenir la biodiversité et stabiliser les écosystèmes océaniques."
+        }
+      ]
+    },
+    {
+      "nom": "Le Cerveau",
+      "qrCodeLien": "https://example.com/qr/cerveau",
+      "courteDescription": "Le cerveau, symbolisé par les récifs coralliens, régule les écosystèmes marins et soutient une biodiversité incroyable.",
+      "partieAssociee": "Régulation et protection des écosystèmes",
+      "image": "./organes/cerveau.png",
+      "bentoGrid": [
+        {
+          "contenu": "Les récifs coralliens, souvent considérés comme le cerveau de l'océan, régulent les écosystèmes marins, protègent les côtes et abritent une biodiversité exceptionnelle. Leur destruction entraîne des conséquences graves sur la biodiversité et la sécurité alimentaire."
+        },
+        {
+          "pourcentage": 50,
+          "contenu": "des récifs coralliens mondiaux ont disparu depuis les années 1950."
+        },
+        {
+          "contenu": "Les récifs coralliens jouent un rôle essentiel en fournissant un habitat et des ressources pour de nombreuses espèces marines."
+        },
+        {
+          "contenu": "Le blanchissement des coraux, causé par le réchauffement des eaux, menace gravement la survie des récifs."
+        },
+        {
+          "contenu": "Protéger les récifs est essentiel pour la survie de nombreuses espèces marines et pour la sécurité des communautés côtières."
+        }
+      ]
+    }
+  ]
+}
