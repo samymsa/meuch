@@ -13,7 +13,21 @@ export function BentoGridDemo({ items }) {
             getGridItemClass(i) +
             "w-[469px] h-[227px] bg-[rgba(163,213,242,0.7)] rounded-[15px] backdrop-blur-[8px] bg-opacity-20"
           }
-        />
+        >
+          <div className="flex items-center space-x-4">
+            {item.image && (
+              <img
+                src={item.image}
+                alt={item.title}
+                className="w-16 h-16 object-cover rounded-full"
+              />
+            )}
+            <div>
+              <h3 className="text-lg font-semibold">{item.title}</h3>
+              <p className="text-sm text-gray-700">{item.description}</p>
+            </div>
+          </div>
+        </BentoGridItem>
       ))}
     </BentoGrid>
   );

@@ -21,6 +21,7 @@ export default function Home() {
       description:
         "Les poumons, tout comme les océans, jouent un rôle vital dans les échanges gazeux : ils captent l'oxygène essentiel à la vie et éliminent le CO₂, rappelant l'équilibre fragile entre respiration et photosynthèse.",
       icon: <IconDroplet className="h-4 w-4 text-neutral-500" />,
+      image: "/coeur.png",
     },
     {
       title: "Cycle de l'eau",
@@ -52,15 +53,6 @@ export default function Home() {
         "Les écosystèmes marins sont des réservoirs de biodiversité, abritant une grande variété d'espèces animales et végétales.",
       icon: <IconDroplet className="h-4 w-4 text-neutral-500" />,
     },
-  ];
-
-  const exampleLayout = [
-    "col-span-2 row-span-1", // Bloc 0
-    "col-span-1 row-span-1", // Bloc 1
-    "col-span-1 row-span-1", // Bloc 2
-    "col-span-2 row-span-2", // Bloc 3
-    "col-span-1 row-span-1", // Bloc 4
-    "col-span-1 row-span-1", // Bloc 5
   ];
 
   return (
