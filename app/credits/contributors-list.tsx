@@ -22,11 +22,11 @@ export async function ContributorsList() {
       headers: {
         "X-GitHub-Api-Version": "2022-11-28",
       },
-    },
+    }
   );
 
   const contributors = response.data.sort(
-    (a: Contributor, b: Contributor) => b.total - a.total,
+    (a: Contributor, b: Contributor) => b.total - a.total
   );
 
   return (
@@ -54,8 +54,11 @@ export async function ContributorsList() {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        <CarouselPrevious className="hidden sm:block" />
+        <CarouselNext className="hidden sm:block" />
+        <div className="text-center mt-4 text-sm text-gray-500">
+          Swipez 👉 pour voir plus de contributeurs
+        </div>
       </Carousel>
     </div>
   );
