@@ -16,13 +16,12 @@ export function BentoGridDemo({ items }) {
           }
         >
           <div className="flex items-center space-x-4">
-            {item.image && (
+            {item.qrcode && (
               <Image
-                src={item.image}
+                src={item.qrcode}
                 alt={item.title}
-                width={64}
-                height={64}
-                className="object-cover rounded-full"
+                width={150}
+                height={150}
               />
             )}
             <div>
@@ -30,12 +29,6 @@ export function BentoGridDemo({ items }) {
               <p className="text-sm text-gray-700">{item.description}</p>
             </div>
           </div>
-          <Image
-            src={item.qrCodeLien}
-            alt={item.title}
-            width={64}
-            height={64}
-          />
         </BentoGridItem>
       ))}
     </BentoGrid>
