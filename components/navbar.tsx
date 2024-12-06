@@ -28,8 +28,10 @@ export default function Navbar() {
                   href="/"
                   className="text-lg font-semibold hover:underline"
                 >
+                  <span className="text-primary">AQUA</span>
                   MEUCH
                 </Link>
+
               </NavigationMenuLink>
             </NavigationMenuItem>
           </NavigationMenuList>
