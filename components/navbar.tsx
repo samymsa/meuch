@@ -15,7 +15,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`w-full bg-transparent fixed top-0 z-50 px-8 ${
+      className={`w-full absolute top-0 z-50 px-8 ${
         isContactPage ? "text-black" : "text-white"
       }`}
     >
