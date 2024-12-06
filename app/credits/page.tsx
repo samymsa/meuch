@@ -53,7 +53,9 @@ async function getContributorsData() {
     },
   );
 
-  return response.data.sort((a, b) => b.total - a.total);
+  const data = response.data || [];
+
+  return data.sort((a, b) => b.total - a.total);
 }
 
 export const metadata: Metadata = {
