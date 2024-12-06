@@ -2,14 +2,19 @@
 
 import { ExpandableCard } from "@/components/ui/expandable-card";
 import { SparklesCore } from "@/components/ui/sparkles";
-import { OceanBackground } from "@/components/ui/wavy-background";
+import { WavyBackground } from "@/components/ui/wavy-background";
 import Image from "next/image";
+import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
 export default function Home() {
   return (
-    <main className="h-screen w-full bg-black overflow-hidden relative">
+    <main className="h-screen w-screen bg-black overflow-auto flex flex-col justify-center items-center">
+      <WavyBackground
+        blur={10}
+        colors={["#0044cc", "#0066ff", "#33ccff", "#66d9ff", "#ffffff"]}
+      ></WavyBackground>
       <SparklesCore
         id="tsparticlesfullpage"
         background="transparent"
@@ -20,23 +25,32 @@ export default function Home() {
         className="absolute w-full h-full"
         particleColor="#FFFFFF"
       />
-      <div className="absolute inset-0 w-full h-full"></div>
-      {/* Expandable Card on top of the image */}
-      <div className="absolute top-0 left-0 w-full h-full z-20 flex justify-center items-center">
+
+      <div className="relative">
+        <Image
+          width={300}
+          height={300}
+          src="/human_body.png"
+          alt="Human Body"
+          className="z-10"
+        />
         <ExpandableCard />
       </div>
-      {/* Centered Image */}
-      <div className="inset-0 flex justify-center items-center z-10 h-full">
-        <OceanBackground className="max-w-4xl mx-auto pb-40">
-          <Image
-            width={300}
-            height={300}
-            src="/human_body.png"
-            alt="Human Body"
-            className="z-10"
-          />
-        </OceanBackground>{" "}
-      </div>
+
+      <Link
+        href="https://github.com/samymsa/meuch"
+        target="_blank"
+        title="Meuch GitHub Repository"
+        className="fixed bottom-4 right-4 flex items-center space-x-2 p-2"
+      >
+        <Image
+          src="/github.svg"
+          alt="GitHub Logo"
+          width={24}
+          height={24}
+          priority
+        />
+      </Link>
     </main>
   );
 }

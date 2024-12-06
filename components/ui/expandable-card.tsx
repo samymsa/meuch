@@ -4,11 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useId, useRef, useState } from "react";
 
-export function ExpandableCard({
-  coords,
-}: {
-  coords?: { x: number; y: number };
-}) {
+export function ExpandableCard() {
   const [active, setActive] = useState<(typeof cards)[number] | boolean | null>(
     null,
   );
@@ -56,7 +52,22 @@ export function ExpandableCard({
               }}
               className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-white rounded-full h-6 w-6"
               onClick={() => setActive(null)}
-            ></motion.button>
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18 18 6M6 6l12 12"
+                />
+              </svg>
+            </motion.button>
             <motion.div
               layoutId={`card-${active.title}-${id}`}
               ref={ref}
@@ -94,7 +105,7 @@ export function ExpandableCard({
                     layoutId={`button-${active.title}-${id}`}
                     href={active.ctaLink}
                     target="_blank"
-                    className="px-4 py-3 text-sm rounded-full font-bold bg-green-500 text-white"
+                    className="px-4 py-3 text-sm rounded-full font-bold bg-primary text-white"
                   >
                     {active.ctaText}
                   </motion.a>
@@ -117,42 +128,107 @@ export function ExpandableCard({
           </div>
         ) : null}
       </AnimatePresence>
-      <ul className="max-w-2xl mx-auto w-full gap-4">
-        {cards.map((card, index) => (
+      {cards.map((card, index) => (
+        <span
+          key={`card-${card.title}-${id}`}
+          className="absolute flex h-3 w-3"
+          style={{
+            bottom: `${card.coords.bottom}%`,
+            left: `${card.coords.left}%`,
+          }}
+        >
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
           <motion.button
-            key={`card-${card.title}-${id}`}
             onClick={() => setActive(card)}
             layoutId={`button-${card.title}-${id}`}
-            className="p-2 rounded-full bg-white hover:scale-150 transform transition-transform"
-          >
-            {card.ctaText}
-          </motion.button>
-        ))}
-      </ul>
+            className="relative inline-flex rounded-full h-3 w-3 bg-white"
+          ></motion.button>
+        </span>
+      ))}
     </>
   );
 }
 
 const cards = [
   {
-    description: "Lana Del Rey",
-    title: "Summertime Sadness",
-    src: "/github.svg",
-    ctaText: "",
-    ctaLink: "https://ui.aceternity.com/templates",
+    description: "Régulation et protection des écosystèmes",
+    title: "Cerveau",
+    src: "/organes/cerveau.png",
+    coords: { bottom: 92, left: 46 },
+    ctaText: "En savoir plus",
+    ctaLink: "#bento",
     content: () => {
       return (
         <p>
-          Lana Del Rey, an iconic American singer-songwriter, is celebrated for
-          her melancholic and cinematic music style. Born Elizabeth Woolridge
-          Grant in New York City, she has captivated audiences worldwide with
-          her haunting voice and introspective lyrics. <br /> <br /> Her songs
-          often explore themes of tragic romance, glamour, and melancholia,
-          drawing inspiration from both contemporary and vintage pop culture.
-          With a career that has seen numerous critically acclaimed albums, Lana
-          Del Rey has established herself as a unique and influential figure in
-          the music industry, earning a dedicated fan base and numerous
-          accolades.
+          Le cerveau, symbolisé par les récifs coralliens, régule les
+          écosystèmes marins et soutient une biodiversité incroyable.
+        </p>
+      );
+    },
+  },
+  {
+    description: "Photosynthèse et dissolution du CO2",
+    title: "Poumon",
+    src: "/organes/corail.png",
+    coords: { bottom: 75, left: 35 },
+    ctaText: "En savoir plus",
+    ctaLink: "#bento",
+    content: () => {
+      return (
+        <p>
+          Les poumons symbolisent le rôle vital des océans dans les échanges
+          gazeux, en produisant l&apos;oxygène et absorbant le dioxyde de
+          carbone.
+        </p>
+      );
+    },
+  },
+  {
+    description: "Soutien et stabilité des écosystèmes marins",
+    title: "Pied",
+    src: "/organes/pieds.png",
+    coords: { bottom: 10, left: 55 },
+    ctaText: "En savoir plus",
+    ctaLink: "#bento",
+    content: () => {
+      return (
+        <p>
+          Les pieds symbolisent les fonds marins, essentiels pour soutenir la
+          vie océanique et stabiliser les écosystèmes.
+        </p>
+      );
+    },
+  },
+  {
+    description: "Courants marins et pompe thermohaline",
+    title: "Coeur",
+    src: "/organes/coeur.png",
+    coords: { bottom: 70, left: 48 },
+    ctaText: "En savoir plus",
+    ctaLink: "#bento",
+    content: () => {
+      return (
+        <p>
+          Le cœur représente les courants marins et la pompe thermohaline,
+          essentiels pour stabiliser le climat et transporter les
+          nutriments.&quot;, &quot;partieAssociee&quot;: &quot;Courants marins
+          et pompe thermohaline
+        </p>
+      );
+    },
+  },
+  {
+    description: "Fertilité et régénération des fonds marins",
+    title: "Sexe",
+    src: "/organes/concombre.png",
+    coords: { bottom: 46, left: 48 },
+    ctaText: "En savoir plus",
+    ctaLink: "#bento",
+    content: () => {
+      return (
+        <p>
+          Le sexe, symbolisé par le concombre de mer, représente la régénération
+          et la fertilité des fonds marins grâce à son rôle écologique.
         </p>
       );
     },
