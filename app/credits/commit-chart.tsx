@@ -28,11 +28,11 @@ const chartConfig = {
 
 export function CommitChart({ contributors }: { contributors: Contributor[] }) {
   return (
-    <Card className="w-full">
+    <Card>
       <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
         <div className="grid flex-1 gap-1 text-center sm:text-left">
-          <CardTitle>Commits</CardTitle>
-          <CardDescription>Total commits in the NDI</CardDescription>
+          <CardTitle>Historique des commits à la Nuit De l&apos;Info 2024</CardTitle>
+          <CardDescription>Total des commits par heure</CardDescription>
         </div>
       </CardHeader>
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">

@@ -1,11 +1,12 @@
-import Navbar from "@/components/Navbar";
+import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
 import { Analytics } from "@vercel/analytics/react";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
 export const metadata = {
   metadataBase: new URL("https://postgres-prisma.vercel.app"),
-  title: "Meuch",
+  title: "AquaMeuch",
   description: "Meuch",
 };
 
@@ -26,6 +27,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Analytics />
+        <Footer />
       </body>
     </html>
   );

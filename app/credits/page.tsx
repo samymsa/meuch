@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { Octokit } from "octokit";
 import { CommitChart } from "./commit-chart";
 import { Contributors } from "./contributors";
@@ -55,39 +56,28 @@ async function getContributorsData() {
   return response.data.sort((a, b) => b.total - a.total);
 }
 
+export const metadata: Metadata = {
+  title: "AquaMeuch - Crédits",
+  description: "Découvrez les contributeurs de Meuch Project.",
+};
+
 export default async function About() {
   return (
-    <div className="min-h-screen bg-gray-100 text-gray-800">
-      <main className="container mx-auto mt-8 p-4">
-        {/* Graphique principal */}
-        <section className="mb-6">
-          <h2 className="text-xl font-semibold text-center mb-4">
-            Historique des commits à la Nuit De l&apos;Info 2024
-          </h2>
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <CommitChart contributors={await getCommitsData()} />
-          </div>
-        </section>
+    <div className="flex min-h-screen flex-col items-center justify-center">
+      <main className="container mx-auto mt-8 p-4 space-y-8">
+        <h1 className="text-4xl font-bold text-center">Crédits</h1>
+        <Contributors contributors={await getContributorsData()} />
 
-        {/* Bloc séparateur "Top Contributors" */}
-        <section className="mb-4">
-          <h2 className="text-xl font-semibold text-center mb-2">
-            Classement des contributeurs
-          </h2>
-          <Contributors contributors={await getContributorsData()} />
+        {/* Graphique principal */}
+        <section className="space-y-2">
+          <CommitChart contributors={await getCommitsData()} />
         </section>
 
         {/* Blocs Contributor Details */}
-        <section className="grid gap-6">
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <ContributorsList />
-          </div>
+        <section className="space-y-2">
+          <ContributorsList />
         </section>
       </main>
-
-      <footer className="bg-gray-800 text-gray-400 p-4 text-center mt-8">
-        <p>© 2024 Meuch Project. Built with 💙 by SamyMSA.</p>
-      </footer>
     </div>
   );
 }
