@@ -1,3 +1,5 @@
+"use client";
+
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -5,10 +7,18 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
+import {usePathname} from "next/navigation";
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const isContactPage = pathname === "/credits";
+
   return (
-    <nav className="w-full bg-transparent fixed top-0 text-white z-50 px-8">
+    <nav
+      className={`w-full bg-transparent fixed top-0 z-50 px-8 ${
+        isContactPage ? "text-black" : "text-white"
+      }`}
+    >
       <div className="container mx-auto flex justify-between items-center py-4">
         <NavigationMenu>
           <NavigationMenuList className="justify-start">
