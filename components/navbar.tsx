@@ -14,7 +14,10 @@ export default function Navbar() {
           <NavigationMenuList className="justify-start">
             <NavigationMenuItem>
               <NavigationMenuLink asChild>
-                <Link href="/" className="text-lg font-semibold hover:underline">
+                <Link
+                  href="/"
+                  className="text-lg font-semibold hover:underline"
+                >
                   MEUCH
                 </Link>
               </NavigationMenuLink>
@@ -26,7 +29,10 @@ export default function Navbar() {
           <NavigationMenuList className="justify-end">
             <NavigationMenuItem>
               <NavigationMenuLink asChild>
-                <Link href="/about" className="text-lg font-semibold hover:underline">
+                <Link
+                  href="/credits"
+                  className="text-lg font-semibold hover:underline"
+                >
                   À propos
                 </Link>
               </NavigationMenuLink>
@@ -35,5 +41,5 @@ export default function Navbar() {
         </NavigationMenu>
       </div>
     </nav>
-  )
+  );
 }
