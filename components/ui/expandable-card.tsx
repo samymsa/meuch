@@ -105,7 +105,7 @@ export function ExpandableCard() {
                     layoutId={`button-${active.title}-${id}`}
                     href={active.ctaLink}
                     target="_blank"
-                    className="px-4 py-3 text-sm rounded-full font-bold bg-green-500 text-white"
+                    className="px-4 py-3 text-sm rounded-full font-bold bg-primary text-white"
                   >
                     {active.ctaText}
                   </motion.a>
@@ -153,58 +153,84 @@ export function ExpandableCard() {
 
 const cards = [
   {
-    description: "Lorem desc",
+    description: "Régulation et protection des écosystèmes",
     title: "Cerveau",
-    src: "/github.svg",
+    src: "/organes/cerveau.png",
     coords: { bottom: 92, left: 46 },
-    ctaText: "",
-    ctaLink: "https://ui.aceternity.com/templates",
+    ctaText: "En savoir plus",
+    ctaLink: "#bento",
     content: () => {
-      return <p>Lorem</p>;
+      return (
+        <p>
+          Le cerveau, symbolisé par les récifs coralliens, régule les
+          écosystèmes marins et soutient une biodiversité incroyable.
+        </p>
+      );
     },
   },
   {
-    description: "Lorem desc",
+    description: "Photosynthèse et dissolution du CO2",
     title: "Poumon",
-    src: "/github.svg",
+    src: "/organes/corail.png",
     coords: { bottom: 75, left: 35 },
-    ctaText: "",
-    ctaLink: "https://ui.aceternity.com/templates",
+    ctaText: "En savoir plus",
+    ctaLink: "#bento",
     content: () => {
-      return <p>Lorem</p>;
+      return (
+        <p>
+          Les poumons symbolisent le rôle vital des océans dans les échanges
+          gazeux, en produisant l'oxygène et absorbant le dioxyde de carbone.
+        </p>
+      );
     },
   },
   {
-    description: "Lorem desc",
+    description: "Soutien et stabilité des écosystèmes marins",
     title: "Pied",
-    src: "/github.svg",
+    src: "/organes/pieds.png",
     coords: { bottom: 10, left: 55 },
-    ctaText: "",
-    ctaLink: "https://ui.aceternity.com/templates",
+    ctaText: "En savoir plus",
+    ctaLink: "#bento",
     content: () => {
-      return <p>Lorem</p>;
+      return (
+        <p>
+          Les pieds symbolisent les fonds marins, essentiels pour soutenir la
+          vie océanique et stabiliser les écosystèmes.
+        </p>
+      );
     },
   },
   {
-    description: "Lorem desc",
+    description: "Courants marins et pompe thermohaline",
     title: "Coeur",
-    src: "/github.svg",
+    src: "/organes/coeur.png",
     coords: { bottom: 70, left: 48 },
-    ctaText: "",
-    ctaLink: "https://ui.aceternity.com/templates",
+    ctaText: "En savoir plus",
+    ctaLink: "#bento",
     content: () => {
-      return <p>Lorem</p>;
+      return (
+        <p>
+          Le cœur représente les courants marins et la pompe thermohaline,
+          essentiels pour stabiliser le climat et transporter les nutriments.",
+          "partieAssociee": "Courants marins et pompe thermohaline
+        </p>
+      );
     },
   },
   {
-    description: "Lorem desc",
+    description: "Fertilité et régénération des fonds marins",
     title: "Sexe",
-    src: "/github.svg",
+    src: "/organes/concombre.png",
     coords: { bottom: 46, left: 48 },
-    ctaText: "",
-    ctaLink: "https://ui.aceternity.com/templates",
+    ctaText: "En savoir plus",
+    ctaLink: "#bento",
     content: () => {
-      return <p>Lorem</p>;
+      return (
+        <p>
+          Le sexe, symbolisé par le concombre de mer, représente la régénération
+          et la fertilité des fonds marins grâce à son rôle écologique.
+        </p>
+      );
     },
   },
 ];
