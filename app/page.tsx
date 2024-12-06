@@ -1,99 +1,42 @@
-import ExpandingArrow from '@/components/expanding-arrow'
-import Table from '@/components/table'
-import TablePlaceholder from '@/components/table-placeholder'
-import Image from 'next/image'
-import Link from 'next/link'
-import { Suspense } from 'react'
+"use client";
 
+import { ExpandableCardDemo } from "@/components/ui/expandable-card";
+import { SparklesCore } from "@/components/ui/sparkles";
+import Image from "next/image";
 
-export const dynamic = 'force-dynamic'
-
+export const dynamic = "force-dynamic";
 
 export default function Home() {
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center">
-      <Link
-        href="https://vercel.com/templates/next.js/postgres-prisma"
-        className="group mt-20 sm:mt-0 rounded-full flex space-x-1 bg-white/30 shadow-sm ring-1 ring-gray-900/5 text-gray-600 text-sm font-medium px-10 py-2 hover:shadow-lg active:shadow-sm transition-all"
-      >
-        <p>Deploy your own to Vercel</p>
-        <ExpandingArrow />
-      </Link>
-      <h1 className="pt-4 pb-8 bg-gradient-to-br from-black via-[#171717] to-[#575757] bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl">
-        Postgres on Vercel
-      </h1>
-      <Suspense fallback={<TablePlaceholder />}>
-        <Table />
-      </Suspense>
-      <p className="font-light text-gray-600 w-full max-w-lg text-center mt-6">
-        <Link
-          href="https://vercel.com/postgres"
-          className="font-medium underline underline-offset-4 hover:text-black transition-colors"
-        >
-          Vercel Postgres
-        </Link>{' '}
-        demo with{' '}
-        <Link
-          href="https://prisma.io"
-          className="font-medium underline underline-offset-4 hover:text-black transition-colors"
-        >
-          Prisma
-        </Link>{' '}
-        as the ORM. <br /> Built with{' '}
-        <Link
-          href="https://nextjs.org/docs"
-          className="font-medium underline underline-offset-4 hover:text-black transition-colors"
-        >
-          Next.js App Router
-        </Link>
-        .
-      </p>
-
-      <div className="flex justify-center space-x-5 pt-10 mt-10 border-t border-gray-300 w-full max-w-xl text-gray-600">
-        <Link
-          href="https://postgres-starter.vercel.app/"
-          className="font-medium underline underline-offset-4 hover:text-black transition-colors"
-        >
-          Starter
-        </Link>
-        <Link
-          href="https://postgres-kysely.vercel.app/"
-          className="font-medium underline underline-offset-4 hover:text-black transition-colors"
-        >
-          Kysely
-        </Link>
-        <Link
-          href="https://postgres-drizzle.vercel.app/"
-          className="font-medium underline underline-offset-4 hover:text-black transition-colors"
-        >
-          Drizzle
-        </Link>
+    <main className="h-screen w-full bg-black overflow-hidden relative">
+      <div className="absolute inset-0 w-full h-full">
+        <SparklesCore
+          id="tsparticlesfullpage"
+          background="transparent"
+          minSize={0.5}
+          maxSize={1}
+          particleDensity={100}
+          speed={0.08}
+          className="w-full h-full"
+          particleColor="#FFFFFF"
+        />
       </div>
 
-      <div className="sm:absolute sm:bottom-0 w-full px-20 py-10 flex justify-between">
-        <Link href="https://vercel.com">
-          <Image
-            src="/vercel.svg"
-            alt="Vercel Logo"
-            width={100}
-            height={24}
-            priority
-          />
-        </Link>
-        <Link
-          href="https://github.com/samymsa/meuch"
-          className="flex items-center space-x-2"
-          target='_blank'
-        >
-          <Image
-            src="/github.svg"
-            alt="GitHub Logo"
-            width={24}
-            height={24}
-            priority
-          />
-        </Link>
+      {/* Expandable Card on top of the image */}
+      <div className="absolute top-0 left-0 w-full h-full z-20 flex justify-center items-center">
+        <ExpandableCardDemo />
+      </div>
+
+      {/* Centered Image */}
+      <div className="absolute inset-0 flex justify-center items-center z-10">
+        <Image
+          width={500}
+          height={500}
+          src="/human_body.svg"
+          alt="Centered Image"
+          className="z-10"
+        />
       </div>
     </main>
-  )
+  );
 }
