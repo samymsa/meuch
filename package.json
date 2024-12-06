@@ -20,6 +20,7 @@
     "@radix-ui/react-slot": "^1.1.0",
     "@sentry/nextjs": "^8.42.0",
     "@shadcn/ui": "^0.0.4",
+    "@tabler/icons-react": "^3.24.0",
     "@tsparticles/engine": "^3.7.1",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.7.1",
