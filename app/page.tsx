@@ -1,9 +1,10 @@
+import ExpandingArrow from '@/components/expanding-arrow'
+import Table from '@/components/table'
+import TablePlaceholder from '@/components/table-placeholder'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Suspense } from 'react'
-import Table from '@/components/table'
-import TablePlaceholder from '@/components/table-placeholder'
-import ExpandingArrow from '@/components/expanding-arrow'
+
 
 export const dynamic = 'force-dynamic'
 
@@ -80,8 +81,9 @@ export default function Home() {
           />
         </Link>
         <Link
-          href="https://github.com/vercel/examples/tree/main/storage/postgres-prisma"
+          href="https://github.com/samymsa/meuch"
           className="flex items-center space-x-2"
+          target='_blank'
         >
           <Image
             src="/github.svg"
@@ -90,7 +92,6 @@ export default function Home() {
             height={24}
             priority
           />
-          <p className="font-light">Source</p>
         </Link>
       </div>
     </main>
