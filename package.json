@@ -17,6 +17,7 @@
     "@octokit/types": "^13.6.2",
     "@prisma/client": "^5.4.1",
     "@radix-ui/react-slot": "^1.1.0",
+    "@shadcn/ui": "^0.0.4",
     "@tsparticles/engine": "^3.7.1",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.7.1",

@@ -1,31 +1,42 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import { Suspense } from 'react'
-import Table from '@/components/table'
-import TablePlaceholder from '@/components/table-placeholder'
-import ExpandingArrow from '@/components/expanding-arrow'
-import {SparklesCore} from "@/components/ui/sparkles";
+"use client";
 
-export const dynamic = 'force-dynamic'
+import { ExpandableCardDemo } from "@/components/ui/expandable-card";
+import { SparklesCore } from "@/components/ui/sparkles";
+import Image from "next/image";
+
+export const dynamic = "force-dynamic";
 
 export default function Home() {
   return (
-    <main className="h-screen relative w-full bg-black overflow-hidden">
-      <div className="w-full absolute inset-0 h-screen">
+    <main className="h-screen w-full bg-black overflow-hidden relative">
+      <div className="absolute inset-0 w-full h-full">
         <SparklesCore
           id="tsparticlesfullpage"
           background="transparent"
           minSize={0.5}
           maxSize={1}
-          particleDensity={50}
-          speed={0.05}
+          particleDensity={100}
+          speed={0.08}
           className="w-full h-full"
           particleColor="#FFFFFF"
         />
       </div>
-      <Hero>
 
-      </Hero>
+      {/* Expandable Card on top of the image */}
+      <div className="absolute top-0 left-0 w-full h-full z-20 flex justify-center items-center">
+        <ExpandableCardDemo />
+      </div>
+
+      {/* Centered Image */}
+      <div className="absolute inset-0 flex justify-center items-center z-10">
+        <Image
+          width={500}
+          height={500}
+          src="/human_body.svg"
+          alt="Centered Image"
+          className="z-10"
+        />
+      </div>
     </main>
   );
 }
