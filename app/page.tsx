@@ -3,12 +3,18 @@
 import { ExpandableCardDemo } from "@/components/ui/expandable-card";
 import { SparklesCore } from "@/components/ui/sparkles";
 import Image from "next/image";
+import {BentoGrid, BentoGridItem} from "@/components/ui/bento-grid";
 
 export const dynamic = "force-dynamic";
 
 export default function Home() {
   return (
     <main className="h-screen w-full bg-black overflow-hidden relative">
+      {/* BentoGridDemo */}
+      <div className="relative z-30 p-4">
+        <BentoGridDemo />
+      </div>
+
       <div className="absolute inset-0 w-full h-full">
         <SparklesCore
           id="tsparticlesfullpage"
@@ -37,6 +43,7 @@ export default function Home() {
           className="z-10"
         />
       </div>
+
     </main>
   );
 }
