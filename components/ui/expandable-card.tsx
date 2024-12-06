@@ -105,7 +105,7 @@ export function ExpandableCard() {
                     onClick={() => setActive(null)}
                     layoutId={`button-${active.title}-${id}`}
                     href={active.ctaLink}
-                    className="px-4 py-3 text-sm rounded-full font-bold bg-primary text-white"
+                    className="px-4 py-3 text-sm rounded-full font-bold bg-primary text-white max-lg:hidden"
                   >
                     {active.ctaText}
                   </motion.a>

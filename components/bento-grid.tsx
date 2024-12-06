@@ -3,7 +3,7 @@ import { BentoGrid, BentoGridItem } from "./ui/bento-grid";
 
 export function BentoGridDemo({ items }) {
   return (
-    <BentoGrid className="max-w-6xl mt-24 mx-auto grid grid-cols-4 grid-rows-2 gap-4">
+    <BentoGrid className="mt-24 grid grid-cols-4 grid-rows-2 gap-4">
       {items.map((item, i) => (
         <BentoGridItem
           key={i}
@@ -12,7 +12,7 @@ export function BentoGridDemo({ items }) {
           icon={item.icon}
           className={
             getGridItemClass(i) +
-            "w-[469px] h-[227px] bg-[rgba(163,213,242,0.7)] rounded-[15px] backdrop-blur-[8px] bg-opacity-20"
+            "w-fit h-fit bg-[rgba(163,213,242,0.7)] rounded-4 backdrop-blur-[8px] bg-opacity-20"
           }
         >
           <div className="flex items-center space-x-4">

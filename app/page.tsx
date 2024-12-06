@@ -50,9 +50,18 @@ export default function Home() {
           />
           <ExpandableCard />
         </div>
+        <div className="text-white z-20 text-center space-y-2">
+          <p className="text-xl max-w-xl font-bold">
+            <span className="text-primary">L&apos;Océan </span>
+            et <span className="text-primary">le corps humain</span> partagent
+            des similarités fascinantes dans leur fonctionnement et
+            dysfonctionnement
+          </p>
+          <p>Cliquez sur une partie du corps pour les découvrir</p>
+        </div>
       </div>
 
-      <div id="bento">
+      <div id="bento" className="max-lg:hidden mb-16">
         <BentoGridDemo items={exampleItems} />
       </div>
 
