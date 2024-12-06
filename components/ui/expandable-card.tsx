@@ -142,9 +142,7 @@ export function ExpandableCard() {
             onClick={() => setActive(card)}
             layoutId={`button-${card.title}-${id}`}
             className="relative inline-flex rounded-full h-3 w-3 bg-white"
-          >
-            {card.ctaText}
-          </motion.button>
+          ></motion.button>
         </span>
       ))}
     </>
