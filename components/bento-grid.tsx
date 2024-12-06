@@ -3,7 +3,7 @@ import { BentoGrid, BentoGridItem } from "./ui/bento-grid";
 
 export function BentoGridDemo({ items }) {
   return (
-    <BentoGrid className="max-w-6xl mx-auto grid grid-cols-4 grid-rows-2 gap-4">
+    <BentoGrid className="max-w-6xl mt-24 mx-auto grid grid-cols-4 grid-rows-2 gap-4">
       {items.map((item, i) => (
         <BentoGridItem
           key={i}
@@ -27,6 +27,7 @@ export function BentoGridDemo({ items }) {
             <div>
               <h3 className="text-lg font-semibold">{item.title}</h3>
               <p className="text-sm text-gray-700">{item.description}</p>
+              <p>👈 Scanne moi</p>
             </div>
           </div>
         </BentoGridItem>
