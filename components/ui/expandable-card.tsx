@@ -177,7 +177,8 @@ const cards = [
       return (
         <p>
           Les poumons symbolisent le rôle vital des océans dans les échanges
-          gazeux, en produisant l'oxygène et absorbant le dioxyde de carbone.
+          gazeux, en produisant l&apos;oxygène et absorbant le dioxyde de
+          carbone.
         </p>
       );
     },
@@ -209,8 +210,9 @@ const cards = [
       return (
         <p>
           Le cœur représente les courants marins et la pompe thermohaline,
-          essentiels pour stabiliser le climat et transporter les nutriments.",
-          "partieAssociee": "Courants marins et pompe thermohaline
+          essentiels pour stabiliser le climat et transporter les
+          nutriments.&quot;, &quot;partieAssociee&quot;: &quot;Courants marins
+          et pompe thermohaline
         </p>
       );
     },
