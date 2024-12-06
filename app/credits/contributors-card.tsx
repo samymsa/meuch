@@ -53,7 +53,7 @@ export function ContributorsCard({
 
   return (
     <Card>
-      <CardHeader className="pb-0">
+      <CardHeader className="pb-2">
         <Image
           height={100}
           width={100}
