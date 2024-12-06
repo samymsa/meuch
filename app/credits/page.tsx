@@ -57,7 +57,7 @@ async function getContributorsData() {
 }
 
 export const metadata: Metadata = {
-  title: "Meuch - Crédits",
+  title: "AquaMeuch - Crédits",
   description: "Découvrez les contributeurs de Meuch Project.",
 };
 
@@ -68,10 +68,9 @@ export default async function About() {
         <h1 className="text-4xl font-bold text-center">Crédits</h1>
         <Contributors contributors={await getContributorsData()} />
 
-
         {/* Graphique principal */}
         <section className="space-y-2">
-            <CommitChart contributors={await getCommitsData()} />
+          <CommitChart contributors={await getCommitsData()} />
         </section>
 
         {/* Blocs Contributor Details */}
