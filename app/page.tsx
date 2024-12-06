@@ -2,6 +2,7 @@
 
 import { ExpandableCard } from "@/components/ui/expandable-card";
 import { SparklesCore } from "@/components/ui/sparkles";
+import { WavyBackground } from "@/components/ui/wavy-background";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,6 +11,10 @@ export const dynamic = "force-dynamic";
 export default function Home() {
   return (
     <main className="h-screen w-screen bg-black overflow-auto flex flex-col justify-center items-center">
+      <WavyBackground
+        blur={10}
+        colors={["#0044cc", "#0066ff", "#33ccff", "#66d9ff", "#ffffff"]}
+      ></WavyBackground>
       <SparklesCore
         id="tsparticlesfullpage"
         background="transparent"
@@ -20,11 +25,8 @@ export default function Home() {
         className="absolute w-full h-full"
         particleColor="#FFFFFF"
       />
-      {/* <div className="inset-0 flex justify-center items-center z-10 h-full">
-        <OceanBackground className="max-w-4xl mx-auto pb-40"></OceanBackground>
-      </div> */}
 
-      <div className="relative border-red-400 border">
+      <div className="relative">
         <Image
           width={200}
           height={200}
@@ -37,6 +39,8 @@ export default function Home() {
 
       <Link
         href="https://github.com/samymsa/meuch"
+        target="_blank"
+        title="Meuch GitHub Repository"
         className="fixed bottom-4 right-4 flex items-center space-x-2 p-2"
       >
         <Image

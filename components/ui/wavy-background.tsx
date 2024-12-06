@@ -1,105 +1,135 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { createNoise3D } from "simplex-noise";
 
-export const OceanBackground = ({
+export const WavyBackground = ({
   children,
   className,
   containerClassName,
-  waveWidth = 2,
-  backgroundFill = "linear-gradient(to bottom, #0077be, #001d3d)",
-  blur = 15,
-  speed = 0.02,
-  waveOpacity = 0.8,
+  colors,
+  waveWidth,
+  backgroundFill,
+  blur = 10,
+  speed = "fast",
+  waveOpacity = 0.5,
   ...props
 }: {
   children?: any;
   className?: string;
   containerClassName?: string;
+  colors?: string[];
   waveWidth?: number;
   backgroundFill?: string;
   blur?: number;
-  speed?: number;
+  speed?: "slow" | "fast";
   waveOpacity?: number;
   [key: string]: any;
 }) => {
+  const noise = createNoise3D();
+  let w: number,
+    h: number,
+    nt: number,
+    i: number,
+    x: number,
+    ctx: any,
+    canvas: any;
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const getSpeed = () => {
+    switch (speed) {
+      case "slow":
+        return 0.001;
+      case "fast":
+        return 0.002;
+      default:
+        return 0.001;
+    }
+  };
 
   const init = () => {
-    const canvas = canvasRef.current;
-    const ctx = canvas?.getContext("2d");
-    if (!canvas || !ctx) return;
-
-    let w = (canvas.width = window.innerWidth);
-    let h = (canvas.height = window.innerHeight);
-    const waveCount = 5; // Number of wave layers
-    const waveColors = ["#0044cc", "#0066ff", "#33ccff", "#66d9ff", "#ffffff"];
-    let t = 0;
-
-    // Update canvas size on resize
-    window.onresize = () => {
-      w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight;
-    };
-
-    // Draw Waves
-    const drawWaves = () => {
-      ctx.clearRect(0, 0, w, h);
-      // Background Gradient
-      const gradient = ctx.createLinearGradient(0, 0, 0, h);
-      gradient.addColorStop(0, "#0077be");
-      gradient.addColorStop(1, "#001d3d");
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, w, h);
-
-      for (let i = 0; i < waveCount; i++) {
-        const amplitude = 30 + i * 15; // Height of the waves
-        const frequency = 0.005 + i * 0.002; // Frequency of the waves
-        const offset = t * (0.5 + i * 0.1); // Wave movement speed
-        ctx.beginPath();
-        ctx.strokeStyle = waveColors[i % waveColors.length];
-        ctx.lineWidth = waveWidth + i; // Adjust width per wave
-        ctx.globalAlpha = waveOpacity - i * 0.1; // Layer transparency
-
-        for (let x = 0; x < w; x++) {
-          const y =
-            Math.sin(x * frequency + offset) * amplitude + // Sine wave
-            (h / 2 - i * 30); // Offset each wave layer vertically
-          ctx.lineTo(x, y);
-        }
-        ctx.stroke();
-        ctx.closePath();
-      }
-      t += speed; // Increment time for animation
-    };
-
-    // Animation Loop
-    const render = () => {
-      drawWaves();
-      requestAnimationFrame(render);
+    canvas = canvasRef.current;
+    ctx = canvas.getContext("2d");
+    w = ctx.canvas.width = window.innerWidth;
+    h = ctx.canvas.height = window.innerHeight;
+    ctx.filter = `blur(${blur}px)`;
+    nt = 0;
+    window.onresize = function () {
+      w = ctx.canvas.width = window.innerWidth;
+      h = ctx.canvas.height = window.innerHeight;
+      ctx.filter = `blur(${blur}px)`;
     };
     render();
+  };
+
+  const waveColors = colors ?? [
+    "#38bdf8",
+    "#818cf8",
+    "#c084fc",
+    "#e879f9",
+    "#22d3ee",
+  ];
+  const drawWave = (n: number) => {
+    nt += getSpeed();
+    for (i = 0; i < n; i++) {
+      ctx.beginPath();
+      ctx.lineWidth = waveWidth || 50;
+      ctx.strokeStyle = waveColors[i % waveColors.length];
+      for (x = 0; x < w; x += 5) {
+        var y = noise(x / 800, 0.3 * i, nt) * 100;
+        ctx.lineTo(x, y + h * 0.5); // adjust for height, currently at 50% of the container
+      }
+      ctx.stroke();
+      ctx.closePath();
+    }
+  };
+
+  let animationId: number;
+  const render = () => {
+    ctx.fillStyle = backgroundFill || "black";
+    ctx.globalAlpha = waveOpacity || 0.5;
+    ctx.fillRect(0, 0, w, h);
+
+    const gradient = ctx.createLinearGradient(0, 0, 0, h);
+    gradient.addColorStop(0, "#0077be");
+    gradient.addColorStop(1, "#001d3d");
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, w, h);
+
+    drawWave(5);
+    animationId = requestAnimationFrame(render);
   };
 
   useEffect(() => {
     init();
     return () => {
-      window.onresize = null; // Clean up resize event
+      cancelAnimationFrame(animationId);
     };
+  }, []);
+
+  const [isSafari, setIsSafari] = useState(false);
+  useEffect(() => {
+    // I'm sorry but i have got to support it on safari.
+    setIsSafari(
+      typeof window !== "undefined" &&
+        navigator.userAgent.includes("Safari") &&
+        !navigator.userAgent.includes("Chrome"),
+    );
   }, []);
 
   return (
     <div
       className={cn(
-        "h-screen flex flex-col items-center justify-center overflow-hidden",
+        "absolute top-0 right-0 bottom-0 left-0 flex flex-col items-center justify-center",
         containerClassName,
       )}
     >
       <canvas
         className="absolute inset-0 z-0"
         ref={canvasRef}
+        id="canvas"
         style={{
-          filter: `blur(${blur}px)`,
+          opacity: 0.8,
+          ...(isSafari ? { filter: `blur(${blur}px)` } : {}),
         }}
       ></canvas>
       <div className={cn("relative z-10", className)} {...props}>
