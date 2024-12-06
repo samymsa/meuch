@@ -61,7 +61,7 @@ export const metadata: Metadata = {
   description: "Découvrez les contributeurs de Meuch Project.",
 };
 
-export default async function About() {
+export default async function Credits() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center">
       <main className="container mx-auto mt-8 p-4 space-y-8">
